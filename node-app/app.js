@@ -5,7 +5,8 @@
 
     app.use(function(req, res, next) { //allow cross origin requests
         res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-        res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+       // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+        res.header("Access-Control-Allow-Origin", "http://localhost:4200");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.header("Access-Control-Allow-Credentials", true);
         next();
@@ -32,6 +33,8 @@
 
     /** API path that will upload the files */
     app.post('/upload', function(req, res) {
+
+       console.log("entrando al backend");
         upload(req,res,function(err){
 			console.log(req.file);
             if(err){
@@ -42,6 +45,6 @@
         });
     });
 
-    app.listen('3001', function(){
-        console.log('running on 3001...');
+    app.listen('8081', function(){
+        console.log('running on 8081...');
     });
