@@ -1,5 +1,5 @@
-    var express = require('express'); 
-    var app = express(); 
+    var express = require('express');
+    var app = express();
     var bodyParser = require('body-parser');
     var multer = require('multer');
 
@@ -15,7 +15,7 @@
     /** Serving from the same express Server
     No cors required */
     app.use(express.static('../client'));
-    app.use(bodyParser.json());  
+    app.use(bodyParser.json());
 
     var storage = multer.diskStorage({ //multers disk storage settings
         destination: function (req, file, cb) {
@@ -45,6 +45,14 @@
         });
     });
 
-    app.listen('8081', function(){
-        console.log('running on 8081...');
+    app.get('/upload/:file(*)', function(req, res, next){
+
+        var file = req.params.file
+        , path = __dirname + '/uploads/' + file;
+
+        res.download(path);
+    });
+
+    app.listen('3001', function(){
+        console.log('running on 3001...');
     });
